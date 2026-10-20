@@ -1,11 +1,13 @@
 {
-  "commentaire": "mots_cles : cherchés dans tout le texte de la ligne. mots_cles_intitule : cherchés seulement dans l'intitulé (APProch : Libellé ; DECP : objet), car ils figurent dans les clauses de paiement de presque tous les marchés. Sans tenir compte des majuscules ni des accents. Mots écartés après mesure : ERP seul (établissements recevant du public), EPM, PGI.",
+  "commentaire": "mots_cles : cherchés dans tout le texte de la ligne. mots_cles_intitule : cherchés seulement dans l'intitulé (APProch : Libellé ; DECP : objet), car ils figurent dans les clauses de paiement de presque tous les marchés. Sans tenir compte des majuscules ni des accents. Mots écartés après mesure : ERP seul (établissements recevant du public), EPM, PGI, Hyperion seul (logiciel de carburant Titan Hypérion, fournisseur d'imprimantes HYPERION).",
   "mots_cles": [
     "Oracle",
     "PeopleSoft",
     "JD Edwards",
     "E-Business Suite",
-    "Hyperion",
+    "Oracle Hyperion",
+    "Hyperion Planning",
+    "Hyperion Financial Management",
     "Fusion Applications",
     "OBIEE",
     "Oracle EPM",
