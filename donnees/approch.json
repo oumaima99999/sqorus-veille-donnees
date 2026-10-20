@@ -1,0 +1,59 @@
+{
+ "source": "APProch — projets d'achats publics (data.economie.gouv.fr)",
+ "url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/projets-dachats-publics/exports/csv?use_labels=true&delimiter=%3B",
+ "genere_le": "2026-10-20T07:27:46+00:00",
+ "lignes_lues": 10744,
+ "colonnes": [
+  "﻿Code",
+  "Libellé",
+  "Statut",
+  "Description",
+  "SIREN de l'entité acheteuse",
+  "Catégorie d'achat",
+  "Code(s) CPV",
+  "Responsable",
+  "Date prévisionnelle de publication",
+  "Date cible de remise des offres",
+  "Type de procédure",
+  "Lien vers la consultation",
+  "Montant estimé du marché",
+  "Durée prévisionnelle du marché",
+  "Département(s) d'exécution du marché",
+  "Marché réservé",
+  "Considérations sociales",
+  "Considérations environnementales",
+  "État de l'espace d'échanges",
+  "A publier sur le site du marché de l’inclusion",
+  "Nomenclature hospitalier"
+ ],
+ "resultats": [
+  {
+   "mots_cles": [
+    "Oracle"
+   ],
+   "ligne": {
+    "﻿Code": "44404",
+    "Libellé": "Maintenance du PGI Oracle EBS pour le compte de la Direction de l'Information Légale et Administrative (DILA)",
+    "Statut": "Ouvert",
+    "Description": "Le présent marché a pour objet la tierce maintenance applicative (TMA) de l’outil PGI Oracle EBS.",
+    "SIREN de l'entité acheteuse": "110001013",
+    "Catégorie d'achat": "Services",
+    "Code(s) CPV": "72267100",
+    "Responsable": "",
+    "Date prévisionnelle de publication": "2024-07-15",
+    "Date cible de remise des offres": "2024-04-09",
+    "Type de procédure": "Appel d'offres ouvert",
+    "Lien vers la consultation": "",
+    "Montant estimé du marché": "500k - 1M€",
+    "Durée prévisionnelle du marché": "48",
+    "Département(s) d'exécution du marché": "75",
+    "Marché réservé": "",
+    "Considérations sociales": "Oui",
+    "Considérations environnementales": "Oui",
+    "État de l'espace d'échanges": "Fermé",
+    "A publier sur le site du marché de l’inclusion": "Non",
+    "Nomenclature hospitalier": ""
+   }
+  }
+ ]
+}
