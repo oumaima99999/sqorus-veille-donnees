@@ -11,6 +11,16 @@ CFG = json.load(open(os.path.join(ICI, "mots-cles.json"), encoding="utf-8"))
 def norm(s): return "".join(c for c in unicodedata.normalize("NFD", str(s or "").lower()) if not unicodedata.combining(c))
 MOTS = [(m, re.compile(r"\b" + re.escape(norm(m)) + r"\b")) for m in CFG["mots_cles"]]
 EXCL = [norm(x) for x in CFG.get("exclusions", [])]
+def propre(v):
+    """Valeur JSON valide : les valeurs manquantes (NaN, NaT, infini) deviennent null."""
+    import math
+    if v is None: return None
+    if isinstance(v, float) and (math.isnan(v) or math.isinf(v)): return None
+    if hasattr(v, "isoformat"):
+        try: return v.isoformat()
+        except Exception: return None
+    if isinstance(v, (int, float, str, bool)): return v
+    s = str(v); return None if s in ("NaT", "nan", "<NA>") else s
 def correspond(texte):
     t = norm(texte)
     if any(x in t for x in EXCL): return []
@@ -67,12 +77,12 @@ try:
     rows = con.execute(f"SELECT * FROM read_parquet('{fichier}') WHERE {cond} LIMIT 5000").fetchdf()
     res = []
     for r in rows.to_dict(orient="records"):
-        r = {k: (None if v is None else (v.isoformat() if hasattr(v, "isoformat") else (v if isinstance(v, (int, float, str, bool)) else str(v)))) for k, v in r.items()}
+        r = {k: propre(v) for k, v in r.items()}
         m = correspond(" ".join(str(r.get(c) or "") for c in texte_cols))
         if m: res.append({"mots_cles": m, "ligne": r})
     json.dump({"source": "DECP consolidées (data.gouv.fr)", "url": URL_DECP, "fichier_reel": finale, "genere_le": MAINTENANT,
                "lignes_lues": total, "colonnes": [c[0] for c in cols], "resultats": res},
-              open(os.path.join(SORTIE, "decp.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=str)
+              open(os.path.join(SORTIE, "decp.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=str, allow_nan=False)
     statut["sources"]["decp"] = {"statut": "ok", "lignes_lues": total, "resultats": len(res), "fichier_reel": finale}
 except Exception as e:
     statut["sources"]["decp"] = {"statut": "échec", "erreur": f"{type(e).__name__} : {e}"[:500]}
