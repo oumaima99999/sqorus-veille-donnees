@@ -1,0 +1,5 @@
+{
+  "commentaire": "Mots-clés recherchés dans tout le texte des lignes (sans tenir compte des majuscules ni des accents). Modifiable.",
+  "mots_cles": ["Oracle", "PeopleSoft", "E-Business Suite", "Fusion Applications", "ERP Finance", "progiciel de gestion intégré", "SI Finance", "AMOA Finance"],
+  "exclusions": ["base de données Oracle seule", "licences Oracle"]
+}
