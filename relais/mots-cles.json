@@ -1,5 +1,38 @@
 {
-  "commentaire": "Mots-clés recherchés dans tout le texte des lignes (sans tenir compte des majuscules ni des accents). Modifiable.",
-  "mots_cles": ["Oracle", "PeopleSoft", "E-Business Suite", "Fusion Applications", "ERP Finance", "progiciel de gestion intégré", "SI Finance", "AMOA Finance"],
-  "exclusions": ["base de données Oracle seule", "licences Oracle"]
+  "commentaire": "mots_cles : cherchés dans tout le texte de la ligne. mots_cles_intitule : cherchés seulement dans l'intitulé (APProch : Libellé ; DECP : objet), car ils figurent dans les clauses de paiement de presque tous les marchés. Sans tenir compte des majuscules ni des accents. Mots écartés après mesure : ERP seul (établissements recevant du public), EPM, PGI.",
+  "mots_cles": [
+    "Oracle",
+    "PeopleSoft",
+    "JD Edwards",
+    "E-Business Suite",
+    "Hyperion",
+    "Fusion Applications",
+    "OBIEE",
+    "Oracle EPM",
+    "progiciel de gestion intégré",
+    "système d'information financier",
+    "SI Finance",
+    "SI financier",
+    "ERP Finance",
+    "ERP financier",
+    "progiciel financier",
+    "progiciel comptable",
+    "GBCP",
+    "AMOA Finance",
+    "chaîne de la dépense"
+  ],
+  "mots_cles_intitule": [
+    "facturation électronique",
+    "facture électronique",
+    "dématérialisation des factures",
+    "Chorus Pro",
+    "Factur-X",
+    "e-invoicing",
+    "e-reporting",
+    "plateforme de dématérialisation partenaire"
+  ],
+  "exclusions": [
+    "base de données Oracle seule",
+    "licences Oracle"
+  ]
 }

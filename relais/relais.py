@@ -10,6 +10,7 @@ SORTIE = os.path.join(ICI, "..", "donnees")
 CFG = json.load(open(os.path.join(ICI, "mots-cles.json"), encoding="utf-8"))
 def norm(s): return "".join(c for c in unicodedata.normalize("NFD", str(s or "").lower()) if not unicodedata.combining(c))
 MOTS = [(m, re.compile(r"\b" + re.escape(norm(m)) + r"\b")) for m in CFG["mots_cles"]]
+MOTS_INTITULE = [(m, re.compile(r"\b" + re.escape(norm(m)) + r"\b")) for m in CFG.get("mots_cles_intitule", [])]
 EXCL = [norm(x) for x in CFG.get("exclusions", [])]
 def propre(v):
     """Valeur JSON valide : les valeurs manquantes (NaN, NaT, infini) deviennent null."""
@@ -21,10 +22,10 @@ def propre(v):
         except Exception: return None
     if isinstance(v, (int, float, str, bool)): return v
     s = str(v); return None if s in ("NaT", "nan", "<NA>") else s
-def correspond(texte):
-    t = norm(texte)
+def correspond(texte, intitule=""):
+    t, i = norm(texte), norm(intitule)
     if any(x in t for x in EXCL): return []
-    return [m for m, rx in MOTS if rx.search(t)]
+    return [m for m, rx in MOTS if rx.search(t)] + [m for m, rx in MOTS_INTITULE if rx.search(i)]
 MAINTENANT = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
 UA = {"User-Agent": "sqorus-veille-relais/1.0 (+https://github.com/oumaima99999/sqorus-veille-donnees)"}
 def telecharger(url, fichier=None, essais=3):
@@ -54,7 +55,7 @@ try:
     lignes = list(csv.DictReader(io.StringIO(texte), delimiter=";"))
     trouvees = []
     for l in lignes:
-        m = correspond(" ".join(str(v) for v in l.values()))
+        m = correspond(" ".join(str(v) for v in l.values()), next((str(v) for k, v in l.items() if k.endswith("Libellé")), ""))
         if m: trouvees.append({"mots_cles": m, "ligne": l})
     json.dump({"source": "APProch — projets d'achats publics (data.economie.gouv.fr)", "url": URL_APPROCH, "genere_le": MAINTENANT,
                "lignes_lues": len(lignes), "colonnes": list(lignes[0].keys()) if lignes else [], "resultats": trouvees},
@@ -73,12 +74,12 @@ try:
     texte_cols = [c[0] for c in cols if "VARCHAR" in c[1].upper()]
     total = con.execute(f"SELECT count(*) FROM read_parquet('{fichier}')").fetchone()[0]
     concat = " || ' ' || ".join(f"coalesce(CAST(\"{c}\" AS VARCHAR), '')" for c in texte_cols)
-    cond = " OR ".join(f"strip_accents(lower({concat})) LIKE '%{norm(m).replace(chr(39), chr(39)*2)}%'" for m, _ in MOTS)
+    cond = " OR ".join([f"strip_accents(lower({concat})) LIKE '%{norm(m).replace(chr(39), chr(39)*2)}%'" for m, _ in MOTS] + [f"strip_accents(lower(coalesce(CAST(\"objet\" AS VARCHAR), ''))) LIKE '%{norm(m).replace(chr(39), chr(39)*2)}%'" for m, _ in MOTS_INTITULE])
     rows = con.execute(f"SELECT * FROM read_parquet('{fichier}') WHERE {cond} LIMIT 5000").fetchdf()
     res = []
     for r in rows.to_dict(orient="records"):
         r = {k: propre(v) for k, v in r.items()}
-        m = correspond(" ".join(str(r.get(c) or "") for c in texte_cols))
+        m = correspond(" ".join(str(r.get(c) or "") for c in texte_cols), str(r.get("objet") or ""))
         if m: res.append({"mots_cles": m, "ligne": r})
     json.dump({"source": "DECP consolidées (data.gouv.fr)", "url": URL_DECP, "fichier_reel": finale, "genere_le": MAINTENANT,
                "lignes_lues": total, "colonnes": [c[0] for c in cols], "resultats": res},
