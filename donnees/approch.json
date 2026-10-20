@@ -1,7 +1,7 @@
 {
  "source": "APProch — projets d'achats publics (data.economie.gouv.fr)",
  "url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/projets-dachats-publics/exports/csv?use_labels=true&delimiter=%3B",
- "genere_le": "2026-10-20T12:32:39+00:00",
+ "genere_le": "2026-10-20T12:59:13+00:00",
  "lignes_lues": 10744,
  "colonnes": [
   "﻿Code",
@@ -27,6 +27,34 @@
   "Nomenclature hospitalier"
  ],
  "resultats": [
+  {
+   "mots_cles": [
+    "Chorus Pro"
+   ],
+   "ligne": {
+    "﻿Code": "64478",
+    "Libellé": "TMA Chorus PRO",
+    "Statut": "Ouvert",
+    "Description": "Tierce Maintenance Applicative de la solution CHORUS PRO",
+    "SIREN de l'entité acheteuse": "110020013",
+    "Catégorie d'achat": "Services",
+    "Code(s) CPV": "72267000",
+    "Responsable": "",
+    "Date prévisionnelle de publication": "2027-01-06",
+    "Date cible de remise des offres": "",
+    "Type de procédure": "",
+    "Lien vers la consultation": "",
+    "Montant estimé du marché": "10M - 50M€",
+    "Durée prévisionnelle du marché": "72",
+    "Département(s) d'exécution du marché": "01|16|17|03|23|08|05|04|09|26|02|24|07|10|06|22|21|11|25|12|14|29|13|2A|2B|30|35|31|32|36|28|34|37|33|19|18|27|15|38|39|40|41|42|44|43|46|45|50|51|49|52|48|47|53|54|55|56|58|60|61|57|65|63|68|62|59|71|70|74|73|64|67|69|66|76|72|75|77|78|80|79|81|86|87|88|89|90|91|83|82|85|84|92|93|94|95",
+    "Marché réservé": "",
+    "Considérations sociales": "Non",
+    "Considérations environnementales": "Non",
+    "État de l'espace d'échanges": "Fermé",
+    "A publier sur le site du marché de l’inclusion": "Oui",
+    "Nomenclature hospitalier": ""
+   }
+  },
   {
    "mots_cles": [
     "Oracle"
