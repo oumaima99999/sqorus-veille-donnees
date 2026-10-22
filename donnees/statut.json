@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-21T16:53:17+00:00",
+ "genere_le": "2026-10-22T04:52:15+00:00",
  "sources": {
   "approch": {
    "statut": "ok",
@@ -7,10 +7,8 @@
    "resultats": 2
   },
   "decp": {
-   "statut": "ok",
-   "lignes_lues": 3310819,
-   "resultats": 367,
-   "fichier_reel": "https://static.data.gouv.fr/resources/donnees-essentielles-de-la-commande-publique-consolidees-format-tabulaire/20261021-051754/decp.parquet"
+   "statut": "échec",
+   "erreur": "InvalidInputException : Invalid Input Error: No magic bytes found at end of file '/tmp/decp.parquet'"
   }
  }
 }
