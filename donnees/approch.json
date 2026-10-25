@@ -1,8 +1,8 @@
 {
  "source": "APProch — projets d'achats publics (data.economie.gouv.fr)",
  "url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/projets-dachats-publics/exports/csv?use_labels=true&delimiter=%3B",
- "genere_le": "2026-10-24T16:49:23+00:00",
- "lignes_lues": 10744,
+ "genere_le": "2026-10-25T04:51:52+00:00",
+ "lignes_lues": 10723,
  "colonnes": [
   "﻿Code",
   "Libellé",
