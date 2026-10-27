@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-27T04:52:16+00:00",
+ "genere_le": "2026-10-27T17:02:35+00:00",
  "sources": {
   "approch": {
    "statut": "ok",
@@ -8,9 +8,9 @@
   },
   "decp": {
    "statut": "ok",
-   "lignes_lues": 3318269,
-   "resultats": 368,
-   "fichier_reel": "https://static.data.gouv.fr/resources/donnees-essentielles-de-la-commande-publique-consolidees-format-tabulaire/20261026-051656/decp.parquet"
+   "lignes_lues": 3325879,
+   "resultats": 369,
+   "fichier_reel": "https://static.data.gouv.fr/resources/donnees-essentielles-de-la-commande-publique-consolidees-format-tabulaire/20261027-051651/decp.parquet"
   }
  }
 }
