@@ -2,7 +2,7 @@
  "source": "DECP consolidées (data.gouv.fr)",
  "url": "https://www.data.gouv.fr/api/1/datasets/r/11cea8e8-df3e-4ed1-932b-781e2635e432",
  "fichier_reel": "https://static.data.gouv.fr/resources/donnees-essentielles-de-la-commande-publique-consolidees-format-tabulaire/20261028-154843/decp.parquet",
- "genere_le": "2026-10-28T17:07:18+00:00",
+ "genere_le": "2026-10-29T05:03:02+00:00",
  "lignes_lues": 3347290,
  "colonnes": [
   "uid",
