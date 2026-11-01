@@ -1,9 +1,9 @@
 {
- "genere_le": "2026-10-31T16:53:28+00:00",
+ "genere_le": "2026-11-01T05:06:00+00:00",
  "sources": {
   "approch": {
    "statut": "ok",
-   "lignes_lues": 10723,
+   "lignes_lues": 10638,
    "resultats": 2
   },
   "decp": {
