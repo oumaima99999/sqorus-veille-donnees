@@ -1,10 +1,9 @@
 {
- "genere_le": "2026-11-02T17:17:15+00:00",
+ "genere_le": "2026-11-03T05:12:44+00:00",
  "sources": {
   "approch": {
-   "statut": "ok",
-   "lignes_lues": 10638,
-   "resultats": 2
+   "statut": "échec",
+   "erreur": "HTTPError : HTTP Error 504: Gateway Time-out"
   },
   "decp": {
    "statut": "ok",
