@@ -6,7 +6,7 @@ import json, os, glob, hashlib, subprocess, tempfile, datetime, re, html
 import urllib.request, urllib.error
 
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 relais-documents-sqorus"
-MAX_OCTETS = 60 * 1024 * 1024
+MAX_OCTETS = 150 * 1024 * 1024
 MAX_TEXTE = 1_500_000  # caractères par document
 
 def telecharger(url):
@@ -42,7 +42,7 @@ def traiter(doc):
     if not re.match(r"^https?://", url): out["erreur"] = "URL invalide"; return out
     try:
         code, ctype, data = telecharger(url); out["http"] = code
-        if len(data) > MAX_OCTETS: out["erreur"] = "document de plus de 60 Mo"; return out
+        if len(data) > MAX_OCTETS: out["erreur"] = "document de plus de 150 Mo"; return out
         out["octets"] = len(data); out["sha256"] = hashlib.sha256(data).hexdigest()
         if data[:4] == b"%PDF":
             out["type"] = "pdf"; n, pages = texte_pdf(data); out["pages"] = n; out["texte"] = pages
