@@ -56,14 +56,22 @@ def traiter(doc):
     except Exception as e: out["erreur"] = type(e).__name__ + " : " + str(e)[:300]
     return out
 
+# Traitement incrémental : un document (cle + url) ajouté plus tard à une demande déjà traitée est traité au passage suivant ;
+# les documents déjà rendus ne sont pas retéléchargés.
 os.makedirs("textes", exist_ok=True)
 for f in sorted(glob.glob("demandes/*.json")):
     did = os.path.splitext(os.path.basename(f))[0]
     cible = os.path.join("textes", did + ".json")
-    if os.path.exists(cible): continue
     try: dem = json.load(open(f, encoding="utf-8"))
     except Exception as e:
-        json.dump({"id": did, "erreur": "demande illisible : " + str(e)}, open(cible, "w"), ensure_ascii=False); continue
-    docs = [traiter(d) for d in (dem.get("documents") or [])[:10]]
-    json.dump({"id": did, "traiteLe": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"), "documents": docs}, open(cible, "w", encoding="utf-8"), ensure_ascii=False)
-    print(did, [(d["cle"], d["statut"], d["pages"], d["erreur"]) for d in docs])
+        if not os.path.exists(cible): json.dump({"id": did, "erreur": "demande illisible : " + str(e)}, open(cible, "w"), ensure_ascii=False)
+        continue
+    deja = json.load(open(cible, encoding="utf-8")) if os.path.exists(cible) else {"id": did, "documents": []}
+    faits = {(d.get("cle"), d.get("url")) for d in deja.get("documents") or []}
+    nouveaux = [d for d in (dem.get("documents") or [])[:10] if (d.get("cle"), d.get("url")) not in faits]
+    if not nouveaux: continue
+    rendus = [traiter(d) for d in nouveaux]
+    deja["documents"] = [d for d in deja.get("documents") or [] if d.get("cle") not in {n.get("cle") for n in nouveaux}] + rendus
+    deja["traiteLe"] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    json.dump(deja, open(cible, "w", encoding="utf-8"), ensure_ascii=False)
+    print(did, [(d["cle"], d["statut"], d["pages"], d["erreur"]) for d in rendus])
