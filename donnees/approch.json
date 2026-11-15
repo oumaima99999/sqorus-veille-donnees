@@ -1,8 +1,8 @@
 {
  "source": "APProch — projets d'achats publics (data.economie.gouv.fr)",
  "url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/projets-dachats-publics/exports/csv?use_labels=true&delimiter=%3B",
- "genere_le": "2026-11-14T16:57:14+00:00",
- "lignes_lues": 10569,
+ "genere_le": "2026-11-15T05:13:24+00:00",
+ "lignes_lues": 10640,
  "colonnes": [
   "﻿Code",
   "Libellé",
@@ -69,7 +69,7 @@
     "Code(s) CPV": "72267100",
     "Responsable": "",
     "Date prévisionnelle de publication": "2024-07-15",
-    "Date cible de remise des offres": "2024-04-09",
+    "Date cible de remise des offres": "2024-05-09",
     "Type de procédure": "Appel d'offres ouvert",
     "Lien vers la consultation": "",
     "Montant estimé du marché": "500k - 1M€",
